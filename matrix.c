@@ -22,7 +22,13 @@ print the matrix such that it looks like
 the template in the top comment
 */
 void print_matrix(struct matrix *m) {
-  
+  int i, j; //indices for row and column
+  for (i = 0; i < m->rows; i++){
+    for (j = 0; j < m->cols; j++){
+      printf("%f ", m->m[i][j]);
+    }
+    printf("\n");
+  }
 }
 
 /*-------------- void ident() --------------
@@ -31,6 +37,17 @@ Inputs:  struct matrix *m <-- assumes m is a square matrix
 turns m in to an identity matrix
 */
 void ident(struct matrix *m) {
+  int i, j;
+  for (i = 0; i < m->rows; i++){
+    for (j = 0; j < m->cols; j++){
+      if (i == j){
+        m->m[i][j] = 1;
+      }
+      else {
+        m->m[i][j] = 0;
+      }
+    }
+  }
 }
 
 
@@ -42,6 +59,28 @@ multiply a by b, modifying b to be the product
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
+  //check the size
+  if (a->cols != b->rows){
+    printf("Given matrices cannot be multiplied.\n");
+  }
+  else {
+    int i, j, k;
+    struct matrix *product;
+    product = new_matrix(a->cols, b->rows);
+    int r = a->rows;
+    int c = a->cols;
+    int d = b->cols;
+    for (i = 0; i < r; i++){
+      for (j = 0; j < d; j++){
+        double sum = 0;
+        for (k = 0; k < c; k++){
+          sum += a->m[i][k] * b->m[k][j];
+        }
+        product->m[i][j] = sum;
+      }
+    }
+    b->m = product->m;
+  }
 }
 
 
