@@ -14,7 +14,9 @@ int main() {
 
   c.red = 0;
   c.green = 0;
-  c.blue = 0;
+  c.blue = 255;
+
+  clear_screen(s);
 
   struct matrix *m1;
   struct matrix *m2;
@@ -49,6 +51,16 @@ int main() {
   //code to draw a picture
   struct matrix *edges;
   edges = new_matrix(4, 4);
+  FILE *fp = fopen("coord.txt", "r");
+  char data[50];
+  int x = 0;
+  int y = 0;
+  while (fgets(data, 50, fp)){
+    sscanf(data, "%d %d", &x, &y);
+    add_point(edges, XRES - x, YRES - y, 0);
+  }
+  fclose(fp);
+  draw_lines(edges, s, c);
   free_matrix(edges);
 
   display(s);

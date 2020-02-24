@@ -51,7 +51,7 @@ to the screen
 ====================*/
 void draw_lines( struct matrix * points, screen s, color c) {
 	int j;
-	for (j = 0; j < points->lastcol - 1; j++){
+	for (j = 0; j < points->lastcol - 1; j+=2){
 		int x0 = points->m[0][j];
 		int y0 = points->m[1][j];
 		int x1 = points->m[0][j+1];
