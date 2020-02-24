@@ -65,23 +65,22 @@ void matrix_mult(struct matrix *a, struct matrix *b) {
     printf("Given matrices cannot be multiplied.\n");
   }
   else {
+    struct matrix *copy;
+    copy = new_matrix(b->rows, b->cols);
+    copy_matrix(b, copy);
     int i, j, k;
     int r = a->rows;
-    int c = a->cols;
-    int d = b->cols;
-    struct matrix *product; //temp storage for dot products
-    product = new_matrix(r, d);
+    int c = a->lastcol;
+    int d = b->lastcol;
     for (i = 0; i < r; i++){
       for (j = 0; j < d; j++){
         double sum = 0;
         for (k = 0; k < c; k++){
-          sum += a->m[i][k] * b->m[k][j];
+          sum += a->m[i][k] * copy->m[k][j];
         }
-        product->m[i][j] = sum;
+        b->m[i][j] = sum;
       }
     }
-    b->rows = r;
-    b->m = product->m;
   }
 }
 

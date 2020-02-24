@@ -41,6 +41,7 @@ int main() {
   printf("\nADDING MORE EDGES\n");
   add_edge(edges, 3, 3, 3, 4, 6, 8);
   add_edge(edges, 0, 0, 0, 9, 9, 9);
+  add_edge(edges, 8, 8, 8, 1, 0, 2);
   print_matrix(edges);
 
   free_matrix(edges);
