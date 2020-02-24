@@ -25,7 +25,7 @@ void print_matrix(struct matrix *m) {
   int i, j; //indices for row and column
   for (i = 0; i < m->rows; i++){
     for (j = 0; j < m->lastcol; j++){
-      printf("%0.2f  ", m->m[i][j]);
+      printf("%0.2f ", m->m[i][j]);
     }
     printf("\n");
   }
