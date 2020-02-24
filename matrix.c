@@ -25,7 +25,7 @@ void print_matrix(struct matrix *m) {
   int i, j; //indices for row and column
   for (i = 0; i < m->rows; i++){
     for (j = 0; j < m->lastcol; j++){
-      printf("%.1f  ", m->m[i][j]);
+      printf("%0.1f  ", m->m[i][j]);
     }
     printf("\n");
   }
@@ -41,10 +41,10 @@ void ident(struct matrix *m) {
   for (i = 0; i < m->rows; i++){
     for (j = 0; j < m->cols; j++){
       if (i == j){
-        m->m[i][j] = 1;
+        m->m[i][j] = 1.0;
       }
       else {
-        m->m[i][j] = 0;
+        m->m[i][j] = 0.0;
       }
     }
   }
