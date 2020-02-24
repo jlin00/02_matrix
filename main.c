@@ -12,9 +12,9 @@ int main() {
   screen s;
   color c;
 
-  c.red = 0;
-  c.green = 0;
-  c.blue = 255;
+  c.red = 255;
+  c.green = 192;
+  c.blue = 203;
 
   clear_screen(s);
 
