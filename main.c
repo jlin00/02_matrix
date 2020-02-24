@@ -24,9 +24,9 @@ int main() {
   ident(identity);
   print_matrix(identity);
 
-  //printf("\nMULTIPLYING BY IDENT\n");
-  //matrix_mult(identity, edges);
-  //print_matrix(edges);
+  printf("\nMULTIPLYING BY IDENT\n");
+  matrix_mult(identity, edges);
+  print_matrix(edges);
 
   printf("\nRANDOM MATRIX\n");
   rand = new_matrix(4, 4);

@@ -24,8 +24,8 @@ the template in the top comment
 void print_matrix(struct matrix *m) {
   int i, j; //indices for row and column
   for (i = 0; i < m->rows; i++){
-    for (j = 0; j < m->cols; j++){
-      printf("%f ", m->m[i][j]);
+    for (j = 0; j < m->lastcol; j++){
+      printf("%.1f  ", m->m[i][j]);
     }
     printf("\n");
   }
@@ -48,6 +48,7 @@ void ident(struct matrix *m) {
       }
     }
   }
+  m->lastcol = m->rows; //update lastcol
 }
 
 
@@ -60,16 +61,16 @@ a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
   //check the size
-  if (a->cols != b->rows){
+  if (a->lastcol != b->rows){
     printf("Given matrices cannot be multiplied.\n");
   }
   else {
     int i, j, k;
-    struct matrix *product;
-    product = new_matrix(a->cols, b->rows);
     int r = a->rows;
-    int c = a->cols;
-    int d = b->cols;
+    int c = a->lastcol;
+    int d = b->lastcol;
+    struct matrix *product; //temp storage for dot products
+    product = new_matrix(r, d);
     for (i = 0; i < r; i++){
       for (j = 0; j < d; j++){
         double sum = 0;
@@ -79,6 +80,7 @@ void matrix_mult(struct matrix *a, struct matrix *b) {
         product->m[i][j] = sum;
       }
     }
+    b->rows = r;
     b->m = product->m;
   }
 }
