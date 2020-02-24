@@ -67,8 +67,8 @@ void matrix_mult(struct matrix *a, struct matrix *b) {
   else {
     int i, j, k;
     int r = a->rows;
-    int c = a->lastcol;
-    int d = b->lastcol;
+    int c = a->cols;
+    int d = b->cols;
     struct matrix *product; //temp storage for dot products
     product = new_matrix(r, d);
     for (i = 0; i < r; i++){

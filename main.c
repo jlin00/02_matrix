@@ -24,23 +24,26 @@ int main() {
   ident(identity);
   print_matrix(identity);
 
-  printf("\nMULTIPLYING BY IDENT\n");
+  printf("\nMULTIPLYING IDENT BY EDGES\n");
   matrix_mult(identity, edges);
   print_matrix(edges);
 
   printf("\nRANDOM MATRIX\n");
   rand = new_matrix(4, 4);
   add_edge(rand, 3, 4, 8, 1, 0, 7);
-  add_edge(rand, 1, 0, 7, 9, 0, 7);
-  //add_edge(rand, 1, 0, 0, 0, 0, 0);
+  add_edge(rand, 1, 0, 7, 9, 1, 2);
   print_matrix(rand);
 
-  printf("\nMULTIPLYING BY RAND\n");
+  printf("\nMULTIPLYING RAND BY EDGES\n");
   matrix_mult(rand, edges);
   print_matrix(edges);
 
+  printf("\nADDING MORE EDGES\n");
+  add_edge(edges, 3, 3, 3, 4, 6, 8);
+  add_edge(edges, 0, 0, 0, 9, 9, 9);
+  print_matrix(edges);
 
-
-
-  free_matrix( edges );
+  free_matrix(edges);
+  free_matrix(identity);
+  free_matrix(rand);
 }
